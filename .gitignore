@@ -1,0 +1,117 @@
+# ============================================
+# SECRETS Y CREDENCIALES - NUNCA COMMITEAR
+# ============================================
+.env
+.env.local
+.env.*.local
+*.keystore
+*.jks
+*.p12
+*.pem
+key.properties
+local.properties
+
+# ============================================
+# BUILD OUTPUTS
+# ============================================
+build/
+.dart_tool/
+.pub-cache/
+*.apk
+*.aab
+*.ipa
+*.app
+*.dSYM
+flutter_*.log
+pubspec.lock.old
+
+# ============================================
+# IDE Y EDITORES
+# ============================================
+.idea/
+.vscode/
+*.iml
+*.iws
+*.ipr
+.project
+.classpath
+.settings/
+*.swp
+*.swo
+*~
+
+# ============================================
+# SISTEMA OPERATIVO
+# ============================================
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# ============================================
+# LOGS Y TEMPORALES
+# ============================================
+*.log
+*.tmp
+*.temp
+.tmp/
+temp/
+logs/
+*.pid
+
+# ============================================
+# COBERTURA Y TESTS
+# ============================================
+coverage/
+.lcov
+*.lcov
+test-results/
+*.xml
+
+# ============================================
+# VERCEL / DEPLOY
+# ============================================
+.vercel/
+vercel.json.local
+
+# ============================================
+# SUPABASE LOCAL (si se usa CLI)
+# ============================================
+.supabase/
+supabase/.temp/
+supabase/migrations/*.backup.sql
+
+# ============================================
+# ARTEFACTOS DE DOCUMENTACIÓN GENERADA
+# ============================================
+docs/*.pdf.generated
+docs/*.html.generated
+
+# ============================================
+# CACHES DE HERRAMIENTAS
+# ============================================
+.gradle/
+.m2/
+.nvm/
+.yarn-cache/
+node_modules/
+
+# ============================================
+# ARCHIVOS PROPIOS DEL PROYECTO (MANTENER)
+# ============================================
+# NO ignorar:
+# - .env.example
+# - pubspec.yaml / pubspec.lock
+# - lib/
+# - supabase/migrations/
+# - docs/
+# - assets/
+# - android/ (configuración nativa)
+# - ios/ (si se añade)
+# - web/ (si se personaliza)
+# - test/
+# - analysis_options.yaml
+# - README.md
+# - LICENSE
+# - .github/
+# - .gitignore (este archivo)
