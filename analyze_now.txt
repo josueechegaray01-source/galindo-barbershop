@@ -1,0 +1,110 @@
+﻿Analyzing BARBERIA...                                           
+
+warning - Unused import: 'package:go_router/go_router.dart'. Try removing the import directive - lib\app\app.dart:8:8 - unused_import
+warning - Unused import: 'package:supabase_flutter/supabase_flutter.dart'. Try removing the import directive - lib\app\app.dart:9:8 - unused_import
+warning - Unused import: 'package:galindo_barbershop/app/app.dart'. Try removing the import directive - lib\app\app.dart:11:8 - unused_import
+warning - Unused import: 'package:galindo_barbershop/app/config/supabase.dart'. Try removing the import directive - lib\app\app.dart:15:8 - unused_import
+warning - The value of the local variable 'authState' isn't used. Try removing the variable or using it - lib\app\app.dart:26:11 - unused_local_variable
+  error - The returned type 'PostgrestFilterBuilder<PostgrestList>' isn't returnable from a 'PostgrestClient' function, as required by the closure's context - lib\app\config\supabase.dart:24:10 - return_of_invalid_type_from_closure
+  error - The name 'StorageClient' isn't a type, so it can't be used as a type argument. Try correcting the name to an existing type, or defining a type named 'StorageClient' - lib\app\config\supabase.dart:28:42 - non_type_as_type_argument
+warning - The operand can't be 'null', so the condition is always 'true'. Remove the condition - lib\app\config\supabase.dart:48:94 - unnecessary_null_comparison
+  error - The argument type 'ProviderRef<GoRouter>' can't be assigned to the parameter type 'WidgetRef'.  - lib\app\router.dart:44:50 - argument_type_not_assignable
+  error - The property 'user' can't be unconditionally accessed because the receiver can be 'null'. Try making the access conditional (using '?.') or adding a null check to the target ('!') - lib\app\router.dart:69:61 - unchecked_use_of_nullable_value
+warning - The receiver can't be null, so the null-aware operator '?.' is unnecessary. Try replacing the operator '?.' with '.' - lib\app\router.dart:69:65 - invalid_null_aware_operator
+warning - The declaration '_StaffShell' isn't referenced. Try removing the declaration of '_StaffShell' - lib\app\router.dart:339:7 - unused_element
+warning - The declaration '_AdminShell' isn't referenced. Try removing the declaration of '_AdminShell' - lib\app\router.dart:350:7 - unused_element
+warning - Unused import: 'package:flutter/material.dart'. Try removing the import directive - lib\core\utils\validators.dart:5:8 - unused_import
+warning - Unused import: 'package:phosphor_flutter/phosphor_flutter.dart'. Try removing the import directive - lib\core\widgets\buttons.dart:6:8 - unused_import
+   info - The import of '../../app/theme/spacing.dart' is unnecessary because all of the used elements are also provided by the import of '../../app/theme/theme.dart'. Try removing the import directive - lib\core\widgets\buttons.dart:9:8 - unnecessary_import
+   info - The import of '../../app/theme/spacing.dart' is unnecessary because all of the used elements are also provided by the import of '../../app/theme/theme.dart'. Try removing the import directive - lib\core\widgets\connectivity_banner.dart:10:8 - unnecessary_import
+  error - The getter 'warningContainer' isn't defined for the type '_GalindoCustomColors'. Try importing the library that defines 'warningContainer', correcting the name to the name of an existing getter, or defining a getter or field named 'warningContainer' - lib\core\widgets\connectivity_banner.dart:27:40 - undefined_getter
+  error - The getter 'warning' isn't defined for the type '_GalindoCustomColors'. Try importing the library that defines 'warning', correcting the name to the name of an existing getter, or defining a getter or field named 'warning' - lib\core\widgets\connectivity_banner.dart:39:50 - undefined_getter
+  error - The getter 'warningText' isn't defined for the type '_GalindoCustomColors'. Try importing the library that defines 'warningText', correcting the name to the name of an existing getter, or defining a getter or field named 'warningText' - lib\core\widgets\connectivity_banner.dart:47:54 - undefined_getter
+  error - The getter 'warning' isn't defined for the type '_GalindoCustomColors'. Try importing the library that defines 'warning', correcting the name to the name of an existing getter, or defining a getter or field named 'warning' - lib\core\widgets\connectivity_banner.dart:58:54 - undefined_getter
+  error - The argument type 'ValueChanged<String>?' can't be assigned to the parameter type 'ValueChanged<String?>?'.  - lib\core\widgets\inputs.dart:85:18 - argument_type_not_assignable
+  error - The argument type 'ValueChanged<String>?' can't be assigned to the parameter type 'ValueChanged<String?>?'.  - lib\core\widgets\inputs.dart:86:20 - argument_type_not_assignable
+  error - Undefined name 'PhosphorIconsRegular'. Try correcting the name to one that is defined, or defining the name - lib\core\widgets\inputs.dart:135:24 - undefined_identifier
+  error - Undefined name 'PhosphorIconsRegular'. Try correcting the name to one that is defined, or defining the name - lib\core\widgets\inputs.dart:194:26 - undefined_identifier
+  error - Undefined name 'PhosphorIconsRegular'. Try correcting the name to one that is defined, or defining the name - lib\core\widgets\inputs.dart:197:28 - undefined_identifier
+  error - Undefined name 'PhosphorIconsRegular'. Try correcting the name to one that is defined, or defining the name - lib\core\widgets\inputs.dart:197:61 - undefined_identifier
+  error - Undefined name 'PhosphorIconsRegular'. Try correcting the name to one that is defined, or defining the name - lib\core\widgets\inputs.dart:244:24 - undefined_identifier
+  error - The argument type 'num' can't be assigned to the parameter type 'double'.  - lib\core\widgets\inputs.dart:288:68 - argument_type_not_assignable
+  error - The argument type 'num' can't be assigned to the parameter type 'double'.  - lib\core\widgets\inputs.dart:288:74 - argument_type_not_assignable
+  error - The argument type 'num' can't be assigned to the parameter type 'double'.  - lib\core\widgets\inputs.dart:289:68 - argument_type_not_assignable
+  error - The argument type 'num' can't be assigned to the parameter type 'double'.  - lib\core\widgets\inputs.dart:289:93 - argument_type_not_assignable
+  error - Undefined name 'PhosphorIconsRegular'. Try correcting the name to one that is defined, or defining the name - lib\core\widgets\inputs.dart:300:48 - undefined_identifier
+  error - Undefined name 'PhosphorIconsRegular'. Try correcting the name to one that is defined, or defining the name - lib\core\widgets\inputs.dart:415:26 - undefined_identifier
+  error - Undefined name 'PhosphorIconsRegular'. Try correcting the name to one that is defined, or defining the name - lib\core\widgets\inputs.dart:416:26 - undefined_identifier
+  error - Undefined name 'PhosphorIconsRegular'. Try correcting the name to one that is defined, or defining the name - lib\core\widgets\inputs.dart:473:26 - undefined_identifier
+  error - Undefined name 'PhosphorIconsRegular'. Try correcting the name to one that is defined, or defining the name - lib\core\widgets\inputs.dart:474:26 - undefined_identifier
+   info - The import of 'package:galindo_barbershop/app/theme/spacing.dart' is unnecessary because all of the used elements are also provided by the import of 'package:galindo_barbershop/app/theme/theme.dart'. Try removing the import directive - lib\core\widgets\maintenance_page.dart:10:8 - unnecessary_import
+  error - The expression doesn't evaluate to a function, so it can't be invoked - lib\core\widgets\maintenance_page.dart:36:37 - invocation_of_non_function_expression
+  error - The expression doesn't evaluate to a function, so it can't be invoked - lib\core\widgets\maintenance_page.dart:126:37 - invocation_of_non_function_expression
+  error - The constructor being called isn't a const constructor. Try removing 'const' from the constructor invocation - lib\features\auth\data\datasources\auth_remote_datasource.dart:65:14 - const_with_non_const
+  error - The constructor being called isn't a const constructor. Try removing 'const' from the constructor invocation - lib\features\auth\data\datasources\auth_remote_datasource.dart:77:14 - const_with_non_const
+  error - The constructor being called isn't a const constructor. Try removing 'const' from the constructor invocation - lib\features\auth\data\datasources\auth_remote_datasource.dart:94:14 - const_with_non_const
+  error - The argument type 'User?' can't be assigned to the parameter type 'User'.  - lib\features\auth\data\datasources\auth_remote_datasource.dart:108:29 - argument_type_not_assignable
+  error - The argument type 'Session?' can't be assigned to the parameter type 'Session'.  - lib\features\auth\data\datasources\auth_remote_datasource.dart:141:29 - argument_type_not_assignable
+warning - The operand can't be 'null', so the condition is always 'false'. Try removing the condition, an enclosing condition, or the whole conditional statement - lib\features\auth\data\repositories\auth_repository_impl.dart:93:16 - unnecessary_null_comparison
+  error - The constructor being called isn't a const constructor. Try removing 'const' from the constructor invocation - lib\features\auth\data\repositories\auth_repository_impl.dart:101:30 - const_with_non_const
+  error - The argument type 'AuthState Function(AuthState) (where AuthState is defined in C:\Users\lENOVO\Desktop\BARBERIA\lib\features\auth\domain\repositories\auth_repository.dart)' can't be assigned to the parameter type 'AuthState Function(AuthState) (where AuthState is defined in C:\Users\lENOVO\Desktop\BARBERIA\lib\features\auth\domain\repositories\auth_repository.dart, AuthState is defined in C:\Users\lENOVO\AppData\Local\Pub\Cache\hosted\pub.dev\gotrue-2.27.3\lib\src\types\auth_state.dart)'.  - lib\features\auth\data\repositories\auth_repository_impl.dart:110:45 - argument_type_not_assignable
+warning - The operand can't be 'null', so the condition is always 'false'. Try removing the condition, an enclosing condition, or the whole conditional statement - lib\features\auth\data\repositories\auth_repository_impl.dart:118:16 - unnecessary_null_comparison
+  error - Undefined class 'User'. Try changing the name to the name of an existing class, or creating a class with the name 'User' - lib\features\auth\data\repositories\auth_repository_impl.dart:129:31 - undefined_class
+  error - Undefined class 'Session'. Try changing the name to the name of an existing class, or creating a class with the name 'Session' - lib\features\auth\data\repositories\auth_repository_impl.dart:145:37 - undefined_class
+  error - Undefined class 'User'. Try changing the name to the name of an existing class, or creating a class with the name 'User' - lib\features\auth\data\repositories\auth_repository_impl.dart:145:54 - undefined_class
+  error - Undefined class 'InitialSession'. Try changing the name to the name of an existing class, or creating a class with the name 'InitialSession' - lib\features\auth\data\repositories\auth_repository_impl.dart:171:7 - undefined_class
+  error - Undefined class 'AuthenticatedSession'. Try changing the name to the name of an existing class, or creating a class with the name 'AuthenticatedSession' - lib\features\auth\data\repositories\auth_repository_impl.dart:172:7 - undefined_class
+  error - Undefined class 'UnauthenticatedSession'. Try changing the name to the name of an existing class, or creating a class with the name 'UnauthenticatedSession' - lib\features\auth\data\repositories\auth_repository_impl.dart:173:7 - undefined_class
+  error - Undefined class 'PasswordRecoverySession'. Try changing the name to the name of an existing class, or creating a class with the name 'PasswordRecoverySession' - lib\features\auth\data\repositories\auth_repository_impl.dart:174:7 - undefined_class
+warning - Unused import: 'package:dartz/dartz.dart'. Try removing the import directive - lib\features\auth\domain\repositories\auth_repository.dart:5:8 - unused_import
+warning - Unused import: '../../data/datasources/auth_remote_datasource.dart'. Try removing the import directive - lib\features\auth\domain\repositories\auth_repository.dart:7:8 - unused_import
+  error - Undefined name 'authRepositoryProvider'. Try correcting the name to one that is defined, or defining the name - lib\features\auth\domain\usecases\auth_usecases.dart:164:34 - undefined_identifier
+  error - Undefined name 'authRepositoryProvider'. Try correcting the name to one that is defined, or defining the name - lib\features\auth\domain\usecases\auth_usecases.dart:168:34 - undefined_identifier
+  error - Undefined name 'authRepositoryProvider'. Try correcting the name to one that is defined, or defining the name - lib\features\auth\domain\usecases\auth_usecases.dart:172:47 - undefined_identifier
+  error - Undefined name 'authRepositoryProvider'. Try correcting the name to one that is defined, or defining the name - lib\features\auth\domain\usecases\auth_usecases.dart:176:35 - undefined_identifier
+  error - Undefined name 'authRepositoryProvider'. Try correcting the name to one that is defined, or defining the name - lib\features\auth\domain\usecases\auth_usecases.dart:180:41 - undefined_identifier
+  error - Undefined name 'authRepositoryProvider'. Try correcting the name to one that is defined, or defining the name - lib\features\auth\domain\usecases\auth_usecases.dart:184:42 - undefined_identifier
+  error - Undefined name 'authRepositoryProvider'. Try correcting the name to one that is defined, or defining the name - lib\features\auth\domain\usecases\auth_usecases.dart:188:45 - undefined_identifier
+  error - Undefined name 'authRepositoryProvider'. Try correcting the name to one that is defined, or defining the name - lib\features\auth\domain\usecases\auth_usecases.dart:192:42 - undefined_identifier
+  error - Undefined name 'authRepositoryProvider'. Try correcting the name to one that is defined, or defining the name - lib\features\auth\domain\usecases\auth_usecases.dart:196:42 - undefined_identifier
+warning - Unused import: 'package:form_builder_validators/form_builder_validators.dart'. Try removing the import directive - lib\features\auth\presentation\pages\forgot_password_page.dart:8:8 - unused_import
+   info - The import of '../../../../app/theme/spacing.dart' is unnecessary because all of the used elements are also provided by the import of '../../../../app/theme/theme.dart'. Try removing the import directive - lib\features\auth\presentation\pages\forgot_password_page.dart:13:8 - unnecessary_import
+warning - Unused import: '../../../../core/utils/formatters.dart'. Try removing the import directive - lib\features\auth\presentation\pages\forgot_password_page.dart:15:8 - unused_import
+  error - The name 'AuthFailure' isn't defined, so it can't be used in an 'is' expression. Try changing the name to the name of an existing type, or creating a type with the name 'AuthFailure' - lib\features\auth\presentation\pages\forgot_password_page.dart:38:55 - type_test_with_undefined_name
+  error - The expression doesn't evaluate to a function, so it can't be invoked - lib\features\auth\presentation\pages\forgot_password_page.dart:53:37 - invocation_of_non_function_expression
+   info - The import of '../../../../app/theme/spacing.dart' is unnecessary because all of the used elements are also provided by the import of '../../../../app/theme/theme.dart'. Try removing the import directive - lib\features\auth\presentation\pages\login_page.dart:13:8 - unnecessary_import
+warning - Unused import: '../../../../core/utils/formatters.dart'. Try removing the import directive - lib\features\auth\presentation\pages\login_page.dart:15:8 - unused_import
+  error - The name 'AuthFailure' isn't defined, so it can't be used in an 'is' expression. Try changing the name to the name of an existing type, or creating a type with the name 'AuthFailure' - lib\features\auth\presentation\pages\login_page.dart:39:55 - type_test_with_undefined_name
+  error - The expression doesn't evaluate to a function, so it can't be invoked - lib\features\auth\presentation\pages\login_page.dart:49:37 - invocation_of_non_function_expression
+  error - The named parameter 'onFieldSubmitted' isn't defined. Try correcting the name to an existing named parameter's name, or defining a named parameter with the name 'onFieldSubmitted' - lib\features\auth\presentation\pages\login_page.dart:182:13 - undefined_named_parameter
+   info - The import of '../../../../app/theme/spacing.dart' is unnecessary because all of the used elements are also provided by the import of '../../../../app/theme/theme.dart'. Try removing the import directive - lib\features\auth\presentation\pages\register_page.dart:13:8 - unnecessary_import
+warning - Unused import: '../../../../core/utils/formatters.dart'. Try removing the import directive - lib\features\auth\presentation\pages\register_page.dart:15:8 - unused_import
+  error - The name 'AuthFailure' isn't defined, so it can't be used in an 'is' expression. Try changing the name to the name of an existing type, or creating a type with the name 'AuthFailure' - lib\features\auth\presentation\pages\register_page.dart:39:55 - type_test_with_undefined_name
+  error - The expression doesn't evaluate to a function, so it can't be invoked - lib\features\auth\presentation\pages\register_page.dart:52:37 - invocation_of_non_function_expression
+  error - The named parameter 'onFieldSubmitted' isn't defined. Try correcting the name to an existing named parameter's name, or defining a named parameter with the name 'onFieldSubmitted' - lib\features\auth\presentation\pages\register_page.dart:268:13 - undefined_named_parameter
+warning - Unused import: 'package:lottie/lottie.dart'. Try removing the import directive - lib\features\auth\presentation\pages\splash_page.dart:8:8 - unused_import
+warning - Unused import: 'package:phosphor_flutter/phosphor_flutter.dart'. Try removing the import directive - lib\features\auth\presentation\pages\splash_page.dart:9:8 - unused_import
+   info - The import of '../../../../app/theme/spacing.dart' is unnecessary because all of the used elements are also provided by the import of '../../../../app/theme/theme.dart'. Try removing the import directive - lib\features\auth\presentation\pages\splash_page.dart:12:8 - unnecessary_import
+warning - Unused import: '../../../../core/widgets/buttons.dart'. Try removing the import directive - lib\features\auth\presentation\pages\splash_page.dart:14:8 - unused_import
+   info - The import of '../../../../app/theme/spacing.dart' is unnecessary because all of the used elements are also provided by the import of '../../../../app/theme/theme.dart'. Try removing the import directive - lib\features\auth\presentation\pages\verify_email_page.dart:11:8 - unnecessary_import
+warning - Unused import: '../../../../core/utils/formatters.dart'. Try removing the import directive - lib\features\auth\presentation\pages\verify_email_page.dart:13:8 - unused_import
+warning - Unused import: '../../domain/entities/user_entity.dart'. Try removing the import directive - lib\features\auth\presentation\pages\verify_email_page.dart:16:8 - unused_import
+warning - The value of the local variable 'authState' isn't used. Try removing the variable or using it - lib\features\auth\presentation\pages\verify_email_page.dart:51:11 - unused_local_variable
+  error - The expression doesn't evaluate to a function, so it can't be invoked - lib\features\auth\presentation\pages\verify_email_page.dart:60:37 - invocation_of_non_function_expression
+  error - The getter 'inbox' isn't defined for the type 'PhosphorIconsRegular'. Try importing the library that defines 'inbox', correcting the name to the name of an existing getter, or defining a getter or field named 'inbox' - lib\features\auth\presentation\pages\verify_email_page.dart:139:54 - undefined_getter
+  error - The getter 'mouseClick' isn't defined for the type 'PhosphorIconsRegular'. Try importing the library that defines 'mouseClick', correcting the name to the name of an existing getter, or defining a getter or field named 'mouseClick' - lib\features\auth\presentation\pages\verify_email_page.dart:151:54 - undefined_getter
+   info - The import of '../../../../app/theme/spacing.dart' is unnecessary because all of the used elements are also provided by the import of '../../../../app/theme/theme.dart'. Try removing the import directive - lib\features\profile\presentation\pages\profile_page.dart:13:8 - unnecessary_import
+warning - Unused import: '../../../../core/utils/formatters.dart'. Try removing the import directive - lib\features\profile\presentation\pages\profile_page.dart:15:8 - unused_import
+warning - The value of the local variable 'isStaff' isn't used. Try removing the variable or using it - lib\features\profile\presentation\pages\profile_page.dart:36:11 - unused_local_variable
+warning - The value of the local variable 'isAdmin' isn't used. Try removing the variable or using it - lib\features\profile\presentation\pages\profile_page.dart:37:11 - unused_local_variable
+  error - The expression doesn't evaluate to a function, so it can't be invoked - lib\features\profile\presentation\pages\profile_page.dart:71:35 - invocation_of_non_function_expression
+warning - Unused import: 'package:flutter_localizations/flutter_localizations.dart'. Try removing the import directive - lib\main.dart:3:8 - unused_import
+   info - 'anonKey' is deprecated and shouldn't be used. Use publishableKey instead. anonKey will be removed in a future major version. Try replacing the use of the deprecated member with the replacement - lib\main.dart:46:7 - deprecated_member_use
+
+flutter : 100 issues found. (ran in 1.0s)
+En línea: 1 Carácter: 38
++ cd C:\Users\lENOVO\Desktop\BARBERIA; flutter analyze 2>&1 | Out-File  ...
++                                      ~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (100 issues found. (ran in 1.0s):String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 

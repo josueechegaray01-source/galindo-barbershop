@@ -1,0 +1,129 @@
+name: galindo_barbershop
+description: "Sistema multiplataforma para Galindo Barbershop - Gestión de citas, barberos, pagos y fidelización"
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.4.0 <4.0.0"
+  flutter: ">=3.24.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+
+  # ============================================
+  # ESTADO Y ARQUITECTURA
+  # ============================================
+  flutter_riverpod: ^2.5.1
+  riverpod_annotation: ^2.3.5
+  freezed_annotation: ^2.4.4
+  json_annotation: ^4.9.0
+  dartz: ^0.10.1
+  equatable: ^2.0.5
+
+  # ============================================
+  # NAVEGACIÓN
+  # ============================================
+  go_router: ^14.2.0
+
+  # ============================================
+  # SUPABASE / BACKEND
+  # ============================================
+  supabase_flutter: ^2.5.6
+
+  # ============================================
+  # UTILIDADES
+  # ============================================
+  intl: ^0.20.3
+  timezone: ^0.9.4
+  flutter_secure_storage: ^9.2.2
+  uuid: ^4.4.0
+  collection: ^1.18.0
+
+  # ============================================
+  # FORMULARIOS Y VALIDACIÓN
+  # ============================================
+  flutter_form_builder: ^9.3.0
+  form_builder_validators: ^11.0.0
+
+  # ============================================
+  # UI Y COMPONENTES
+  # ============================================
+  cached_network_image: ^3.4.1
+  shimmer: ^3.0.0
+  flutter_svg: ^2.0.10+1
+  lottie: ^3.1.2
+
+  # ============================================
+  # FECHAS Y CALENDARIO
+  # ============================================
+  table_calendar: ^3.1.2
+  syncfusion_flutter_calendar: ^26.1.38
+
+  # ============================================
+  # PDF Y REPORTES
+  # ============================================
+  pdf: ^3.11.0
+  printing: ^5.13.0
+
+  # ============================================
+  # NOTIFICACIONES Y PERMISOS
+  # ============================================
+  permission_handler: ^11.3.1
+  flutter_local_notifications: ^17.2.2
+
+  # ============================================
+  # CONECTIVIDAD Y ALMACENAMIENTO
+  # ============================================
+  connectivity_plus: ^6.0.5
+  shared_preferences: ^2.3.2
+
+  # ============================================
+  # ICONOS (usando GalindoIcons)
+  # ============================================
+  lucide_icons: ^0.257.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+  riverpod_generator: ^2.4.0
+  freezed: ^2.5.2
+  json_serializable: ^6.8.0
+  build_runner: ^2.4.11
+  custom_lint: ^0.6.4
+  riverpod_lint: ^2.3.10
+
+dependency_overrides:
+  intl: ^0.19.0
+
+flutter:
+  uses-material-design: true
+  
+  # Assets
+  assets:
+    - assets/branding/
+  
+  # Fuentes
+  fonts:
+    - family: Inter
+      fonts:
+        - asset: assets/fonts/Inter-Regular.ttf
+        - asset: assets/fonts/Inter-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Inter-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Inter-Bold.ttf
+          weight: 700
+    - family: PhosphorRegular
+      fonts:
+        - asset: assets/fonts/Phosphor-Regular.ttf
+          weight: 400
+
+  # Configuración para generar iconos (flutter_launcher_icons)
+  # flutter_launcher_icons:
+  #   android: "launcher_icon"
+  #   ios: true
+  #   image_path: "assets/branding/galindo_logo_original.png"
+  #   min_sdk_android: 21
