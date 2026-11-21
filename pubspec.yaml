@@ -120,6 +120,10 @@ flutter:
       fonts:
         - asset: assets/fonts/Phosphor-Regular.ttf
           weight: 400
+    - family: MaterialIcons
+      fonts:
+        - asset: packages/flutter/materialicons/MaterialIcons-Regular.otf
+          package: flutter
 
   # Configuración para generar iconos (flutter_launcher_icons)
   # flutter_launcher_icons:
