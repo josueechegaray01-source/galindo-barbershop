@@ -1,5 +1,0 @@
-- generic [active] [ref=f10e1]:
-  - button "Enable accessibility" [ref=f10e2]
-  - generic [ref=f10e3]:
-    - img "Galindo Barbershop" [ref=f10e4]
-    - generic [ref=f10e5]: GALINDO
