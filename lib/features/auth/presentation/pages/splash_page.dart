@@ -2,6 +2,8 @@
 ///
 /// Pantalla inicial con logo animado y verificación de sesión.
 
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -56,30 +58,17 @@ class _SplashPageState extends ConsumerState<SplashPage>
   }
 
   Future<void> _navigateAfterDelay() async {
-    // Escuchar cambios de estado de autenticación en lugar de delay fijo
-    final completer = Completer<void>();
-    final subscription = ref.listen<AuthUiState>(
-      authStateProvider,
-      (previous, next) {
-        if (next is AuthUiStateAuthenticated) {
-          if (mounted) context.go(AppRoutes.home);
-          completer.complete();
-        } else if (next is AuthUiStateUnauthenticated) {
-          if (mounted) context.go(AppRoutes.login);
-          completer.complete();
-        } else if (next is AuthUiStateError) {
-          if (mounted) context.go(AppRoutes.login);
-          completer.complete();
-        }
-      },
-      fireImmediately: true,
-    );
+    // Usar delay fijo y luego verificar estado de auth
+    await Future.delayed(const Duration(milliseconds: 2500));
 
-    // Timeout de 5 segundos como fallback
-    await Future.delayed(const Duration(milliseconds: 5000));
-    if (!completer.isCompleted) {
-      subscription.dispose();
-      if (mounted) context.go(AppRoutes.login);
+    if (!mounted) return;
+
+    final authState = ref.read(authStateProvider);
+
+    if (authState is AuthUiStateAuthenticated) {
+      context.go(AppRoutes.home);
+    } else {
+      context.go(AppRoutes.landing);
     }
   }
 

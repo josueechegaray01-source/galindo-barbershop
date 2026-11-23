@@ -13,26 +13,9 @@ import 'package:galindo_barbershop/features/auth/presentation/pages/register_pag
 import 'package:galindo_barbershop/features/auth/presentation/pages/forgot_password_page.dart';
 import 'package:galindo_barbershop/features/auth/presentation/pages/verify_email_page.dart';
 import 'package:galindo_barbershop/features/profile/presentation/pages/profile_page.dart';
+import 'package:galindo_barbershop/features/catalog/presentation/pages/landing_page.dart';
 import 'package:galindo_barbershop/core/widgets/maintenance_page.dart';
 import 'package:galindo_barbershop/features/auth/presentation/providers/auth_provider.dart';
-
-// TODO: Descomentar cuando se creen estas páginas
-// import 'features/catalog/presentation/pages/catalog_page.dart';
-// import 'features/catalog/presentation/pages/service_detail_page.dart';
-// import 'features/barbers/presentation/pages/barbers_page.dart';
-// import 'features/barbers/presentation/pages/barber_detail_page.dart';
-// import 'features/availability/presentation/pages/availability_page.dart';
-// import 'features/bookings/presentation/pages/booking_flow_page.dart';
-// import 'features/my_bookings/presentation/pages/my_bookings_page.dart';
-// import 'features/my_bookings/presentation/pages/booking_detail_page.dart';
-// import 'features/staff_agenda/presentation/pages/staff_agenda_page.dart';
-// import 'features/admin/presentation/pages/admin_dashboard_page.dart';
-// import 'features/admin/presentation/pages/admin_services_page.dart';
-// import 'features/admin/presentation/pages/admin_barbers_page.dart';
-// import 'features/admin/presentation/pages/admin_schedule_page.dart';
-// import 'features/admin/presentation/pages/admin_payments_page.dart';
-// import 'features/admin/presentation/pages/admin_reviews_page.dart';
-// import 'features/admin/presentation/pages/admin_settings_page.dart';
 
 /// Provider del router con redirect basado en autenticación
 final routerProvider = Provider<GoRouter>((ref) {
@@ -120,10 +103,11 @@ bool _isAuthRoute(String location) {
 bool _isPublicRoute(String location) {
   const publicRoutes = [
     AppRoutes.splash,
-    // AppRoutes.catalog,
-    // AppRoutes.serviceDetail,
-    // AppRoutes.barbers,
-    // AppRoutes.barberDetail,
+    AppRoutes.landing,
+    AppRoutes.catalog,
+    AppRoutes.serviceDetail,
+    AppRoutes.barbers,
+    AppRoutes.barberDetail,
   ];
   return publicRoutes.any((r) => location == r || location.startsWith('$r/'));
 }
@@ -168,6 +152,12 @@ List<RouteBase> _buildRoutes() {
       path: AppRoutes.splash,
       name: 'splash',
       builder: (context, state) => const SplashPage(),
+    ),
+    // === LANDING PAGE (PÚBLICA) ===
+    GoRoute(
+      path: AppRoutes.landing,
+      name: 'landing',
+      builder: (context, state) => const LandingPage(),
     ),
     GoRoute(
       path: AppRoutes.login,
@@ -299,6 +289,7 @@ List<RouteBase> _buildRoutes() {
 class AppRoutes {
   // Auth
   static const String splash = '/';
+  static const String landing = '/inicio';
   static const String login = '/login';
   static const String register = '/register';
   static const String forgotPassword = '/forgot-password';

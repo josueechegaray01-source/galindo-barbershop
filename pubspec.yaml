@@ -116,14 +116,7 @@ flutter:
           weight: 600
         - asset: assets/fonts/Inter-Bold.ttf
           weight: 700
-    - family: PhosphorRegular
-      fonts:
-        - asset: assets/fonts/Phosphor-Regular.ttf
-          weight: 400
-    - family: MaterialIcons
-      fonts:
-        - asset: packages/flutter/materialicons/MaterialIcons-Regular.otf
-          package: flutter
+    # Remove Phosphor font for now to test build
 
   # Configuración para generar iconos (flutter_launcher_icons)
   # flutter_launcher_icons:
