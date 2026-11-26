@@ -58,7 +58,7 @@ class GalindoBarbershopApp extends ConsumerWidget {
               MediaQuery.of(context).textScaler.scale(1.0).clamp(0.8, 1.5),
             ),
           ),
-          child: _AppWrapper(child: child!),
+          child: _AppWrapper(child: child ?? const SizedBox.shrink()),
         );
       },
     );

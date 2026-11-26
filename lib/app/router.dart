@@ -14,6 +14,7 @@ import 'package:galindo_barbershop/features/auth/presentation/pages/forgot_passw
 import 'package:galindo_barbershop/features/auth/presentation/pages/verify_email_page.dart';
 import 'package:galindo_barbershop/features/profile/presentation/pages/profile_page.dart';
 import 'package:galindo_barbershop/features/catalog/presentation/pages/landing_page.dart';
+import 'package:galindo_barbershop/features/booking/presentation/pages/booking_page.dart';
 import 'package:galindo_barbershop/core/widgets/maintenance_page.dart';
 import 'package:galindo_barbershop/features/auth/presentation/providers/auth_provider.dart';
 
@@ -64,17 +65,24 @@ String? _buildRedirect(AuthUiState authState, GoRouterState state) {
   // Rutas públicas - siempre accesibles
   if (isPublicRoute) return null;
 
-  // Rutas de auth - redirigir si ya logueado
+  // Rutas de auth - redirigir si ya logueado (respetando ?redirect=)
   if (isAuthRoute) {
     if (isLoggedIn) {
+      final redirect = state.uri.queryParameters['redirect'];
+      if (redirect != null && redirect.startsWith('/')) {
+        return redirect;
+      }
       return _getHomeRouteForRole(userRole);
     }
     return null;
   }
 
-  // Si no está logueado y no es ruta pública/auth -> login
+  // Si no está logueado y no es ruta pública/auth -> login (recordando destino)
   if (!isLoggedIn) {
-    return AppRoutes.login;
+    final dest = state.uri.toString();
+    return dest == AppRoutes.login
+        ? AppRoutes.login
+        : '${AppRoutes.login}?redirect=${Uri.encodeComponent(dest)}';
   }
 
   // Verificar acceso a rutas de staff
@@ -104,6 +112,7 @@ bool _isPublicRoute(String location) {
   const publicRoutes = [
     AppRoutes.splash,
     AppRoutes.landing,
+    AppRoutes.bookingFlow,
     AppRoutes.catalog,
     AppRoutes.serviceDetail,
     AppRoutes.barbers,
@@ -158,6 +167,15 @@ List<RouteBase> _buildRoutes() {
       path: AppRoutes.landing,
       name: 'landing',
       builder: (context, state) => const LandingPage(),
+    ),
+    // === FLUJO DE RESERVA (PÚBLICO; la RPC exige sesión al confirmar) ===
+    GoRoute(
+      path: AppRoutes.bookingFlow,
+      name: 'booking-flow',
+      builder: (context, state) => BookingPage(
+        initialServiceId: state.uri.queryParameters['servicio'],
+        initialBarberId: state.uri.queryParameters['barbero'],
+      ),
     ),
     GoRoute(
       path: AppRoutes.login,

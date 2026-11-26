@@ -19,9 +19,19 @@ final supabaseAuthProvider = Provider<GoTrueClient>((ref) {
   return ref.watch(supabaseClientProvider).auth;
 });
 
-/// Provider para Supabase Database (PostgREST)
+/// Provider para Supabase Database (PostgREST) - cliente personalizado con apikey forzado
 final supabaseDatabaseProvider = Provider<PostgrestClient>((ref) {
-  return ref.watch(supabaseClientProvider).rest;
+  final client = ref.watch(supabaseClientProvider);
+  // Forzar el header apikey en todas las peticiones PostgREST
+  return PostgrestClient(
+    client.rest.url,
+    headers: {
+      'apikey': Environment.supabaseAnonKey,
+      'Authorization': 'Bearer ${Environment.supabaseAnonKey}',
+      'Content-Type': 'application/json',
+    },
+    schema: 'public',
+  );
 });
 
 /// Provider para Supabase Storage

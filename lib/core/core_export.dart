@@ -10,3 +10,4 @@ export 'widgets/buttons.dart';
 export 'widgets/inputs.dart';
 export 'widgets/connectivity_banner.dart';
 export 'icons/galindo_icons.dart';
+export '../../app/config/supabase.dart';

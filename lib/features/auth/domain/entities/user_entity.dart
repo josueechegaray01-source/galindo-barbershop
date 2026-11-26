@@ -37,18 +37,19 @@ class UserEntity with _$UserEntity {
 
   /// Nombre para mostrar
   String get displayName =>
-      fullName?.isNotEmpty == true ? fullName! : email.split('@').first;
+      (fullName?.isNotEmpty == true) ? fullName! : email.split('@').first;
 
   /// Iniciales para avatar
   String get initials {
-    if (fullName?.isNotEmpty == true) {
-      final parts = fullName!.split(' ');
+    final name = fullName;
+    if (name?.isNotEmpty == true) {
+      final parts = name!.split(' ');
       if (parts.length >= 2) {
         return '${parts.first[0]}${parts.last[0]}'.toUpperCase();
       }
       return parts.first[0].toUpperCase();
     }
-    return email[0].toUpperCase();
+    return email.isNotEmpty ? email[0].toUpperCase() : '?';
   }
 }
 

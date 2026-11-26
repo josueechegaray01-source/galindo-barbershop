@@ -159,7 +159,9 @@ class AppValidators {
   static String? positiveNumber(String? value, {String? fieldName}) {
     final numericError = numeric(value);
     if (numericError != null) return numericError;
-    final num = double.parse(value!.trim());
+    final v = value?.trim();
+    if (v == null || v.isEmpty) return 'Campo requerido';
+    final num = double.parse(v);
     if (num <= 0) {
       return '${fieldName ?? 'El valor'} debe ser mayor a 0';
     }
@@ -169,7 +171,9 @@ class AppValidators {
   static String? nonNegativeNumber(String? value, {String? fieldName}) {
     final numericError = numeric(value);
     if (numericError != null) return numericError;
-    final num = double.parse(value!.trim());
+    final v = value?.trim();
+    if (v == null || v.isEmpty) return 'Campo requerido';
+    final num = double.parse(v);
     if (num < 0) {
       return '${fieldName ?? 'El valor'} no puede ser negativo';
     }
@@ -180,7 +184,9 @@ class AppValidators {
       {String? fieldName}) {
     final numericError = numeric(value);
     if (numericError != null) return numericError;
-    final num = double.parse(value!.trim());
+    final v = value?.trim();
+    if (v == null || v.isEmpty) return 'Campo requerido';
+    final num = double.parse(v);
     if (num < min || num > max) {
       return '${fieldName ?? 'El valor'} debe estar entre $min y $max';
     }

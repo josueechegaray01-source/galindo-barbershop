@@ -83,6 +83,7 @@ dependencies:
   # ICONOS (usando GalindoIcons)
   # ============================================
   lucide_icons: ^0.257.0
+  cupertino_icons: ^1.0.8
 
 dev_dependencies:
   flutter_test:
@@ -100,11 +101,12 @@ dependency_overrides:
 
 flutter:
   uses-material-design: true
-  
+   
   # Assets
   assets:
     - assets/branding/
-  
+    - assets/fonts/
+   
   # Fuentes
   fonts:
     - family: Inter
@@ -116,7 +118,13 @@ flutter:
           weight: 600
         - asset: assets/fonts/Inter-Bold.ttf
           weight: 700
-    # Remove Phosphor font for now to test build
+    - family: PhosphorRegular
+      fonts:
+        - asset: assets/fonts/Phosphor-Regular.ttf
+    - family: MaterialIcons
+      fonts:
+        - asset: assets/fonts/MaterialIcons-Regular.otf
+          weight: 400
 
   # Configuración para generar iconos (flutter_launcher_icons)
   # flutter_launcher_icons:

@@ -6,11 +6,11 @@
 /// Para producción, configurar en CI/CD (GitHub Actions, Vercel, etc.)
 
 class Environment {
-  // Supabase
+  // Supabase - Hardcoded para testing mientras se soluciona el --dart-define
   static const String supabaseUrl =
-      String.fromEnvironment('SUPABASE_URL', defaultValue: '');
+      String.fromEnvironment('SUPABASE_URL', defaultValue: 'https://fithxgprfwkfptgjhqcy.supabase.co');
   static const String supabaseAnonKey =
-      String.fromEnvironment('SUPABASE_ANON_KEY', defaultValue: '');
+      String.fromEnvironment('SUPABASE_ANON_KEY', defaultValue: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZpdGh4Z3ByZndrZnB0Z2pocWN5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTUxOTMzMjAsImV4cCI6MjExMDc2OTMyMH0.rztZ7Na8xda1Z35vIKY8v5G7We-F2DLZyoZB8E4WqfA');
 
   // App
   static const String appName =

@@ -292,18 +292,24 @@ class NumberField extends StatelessWidget {
     final validators = <String? Function(String?)>[
       FormBuilderValidatorsExt.numeric(),
     ];
-    if (min != null) {
+    final minVal = min;
+    final maxVal = max;
+    if (minVal != null) {
       validators.add(FormBuilderValidatorsExt.range(
-        min!.toDouble(),
-        (max ?? double.infinity).toDouble(),
+        minVal.toDouble(),
+        (maxVal ?? double.infinity).toDouble(),
       ));
     }
-    if (max != null) {
+    if (maxVal != null) {
       validators.add(FormBuilderValidatorsExt.range(
-        (min ?? -double.infinity).toDouble(),
-        max!.toDouble(),
+        (minVal ?? -double.infinity).toDouble(),
+        maxVal.toDouble(),
       ));
     }
+
+    final dec = decimals;
+    final suf = suffix;
+    final chg = onChanged;
 
     return GalindoTextField(
       name: name,
@@ -312,22 +318,22 @@ class NumberField extends StatelessWidget {
       controller: controller,
       focusNode: focusNode,
       keyboardType: TextInputType.numberWithOptions(
-          decimal: decimals != null && decimals! > 0),
+          decimal: dec != null && dec > 0),
       textInputAction: TextInputAction.next,
       enabled: enabled,
-      prefixIcon: suffix != null
+      prefixIcon: suf != null
           ? null
           : Icon(GalindoIcons.calculator,
               size: GalindoSpacing.iconSizeMd),
-      suffixIcon: suffix != null
+      suffixIcon: suf != null
           ? Padding(
               padding: EdgeInsets.all(GalindoSpacing.md),
-              child: Text(suffix!, style: GalindoTypography.bodyMedium),
+              child: Text(suf!, style: GalindoTypography.bodyMedium),
             )
           : null,
       validators: validators,
       onChanged:
-          onChanged != null ? (v) => onChanged!(num.tryParse(v) ?? 0) : null,
+          chg != null ? (v) => chg!(num.tryParse(v) ?? 0) : null,
     );
   }
 }

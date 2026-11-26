@@ -96,7 +96,7 @@ class PrimaryButton extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   if (icon != null) ...[
-                    Icon(icon, size: textStyle.fontSize! * 1.2),
+                    Icon(icon, size: (textStyle.fontSize ?? 14) * 1.2),
                     SizedBox(width: GalindoSpacing.sm),
                   ],
                   Text(label),
@@ -192,7 +192,7 @@ class SecondaryButton extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   if (icon != null) ...[
-                    Icon(icon, size: textStyle.fontSize! * 1.2),
+                    Icon(icon, size: (textStyle.fontSize ?? 14) * 1.2),
                     SizedBox(width: GalindoSpacing.sm),
                   ],
                   Text(label),
@@ -284,7 +284,7 @@ class TertiaryButton extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   if (icon != null) ...[
-                    Icon(icon, size: textStyle.fontSize! * 1.2),
+                    Icon(icon, size: (textStyle.fontSize ?? 14) * 1.2),
                     SizedBox(width: GalindoSpacing.sm),
                   ],
                   Text(label),
@@ -358,7 +358,7 @@ class DestructiveButton extends StatelessWidget {
                 children: [
                   if (icon != null) ...[
                     Icon(icon,
-                        size: GalindoTypography.labelLarge.fontSize! * 1.2),
+                        size: (GalindoTypography.labelLarge.fontSize ?? 14) * 1.2),
                     SizedBox(width: GalindoSpacing.sm),
                   ],
                   Text(label),
@@ -457,7 +457,7 @@ class ChipButton extends StatelessWidget {
       label: Text(label, style: GalindoTypography.labelMedium),
       avatar: icon != null ? Icon(icon, size: GalindoSpacing.iconSizeSm) : null,
       selected: isSelected,
-      onSelected: onPressed != null ? (_) => onPressed!() : null,
+      onSelected: onPressed != null ? (_) => onPressed?.call() : null,
       selectedColor: selectedBg,
       backgroundColor: unselectedBg,
       labelStyle: GalindoTypography.labelMedium.copyWith(

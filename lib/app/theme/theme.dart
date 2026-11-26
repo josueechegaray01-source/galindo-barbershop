@@ -742,9 +742,9 @@ class _GalindoComponentSizes extends ThemeExtension<_GalindoComponentSizes> {
 /// Helper para acceder a extensiones del tema
 extension GalindoThemeExtensions on BuildContext {
   _GalindoCustomColors get galindoColors =>
-      Theme.of(this).extension<_GalindoCustomColors>()!;
+      Theme.of(this).extension<_GalindoCustomColors>() ?? _GalindoCustomColors();
   _GalindoComponentSizes get galindoSizes =>
-      Theme.of(this).extension<_GalindoComponentSizes>()!;
+      Theme.of(this).extension<_GalindoComponentSizes>() ?? _GalindoComponentSizes();
 
   // Colores semánticos rápidos
   Color get statusPending => galindoColors.statusPending;
