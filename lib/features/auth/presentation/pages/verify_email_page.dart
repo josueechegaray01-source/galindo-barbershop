@@ -2,6 +2,8 @@
 ///
 /// Pantalla para verificar el correo electrónico después del registro.
 
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -23,6 +25,8 @@ class VerifyEmailPage extends ConsumerStatefulWidget {
 class _VerifyEmailPageState extends ConsumerState<VerifyEmailPage> {
   int _resendCountdown = 30;
   bool _resendEnabled = false;
+  bool _sending = false;
+  Timer? _timer;
 
   @override
   void initState() {
@@ -30,26 +34,68 @@ class _VerifyEmailPageState extends ConsumerState<VerifyEmailPage> {
     _startCountdown();
   }
 
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
+  }
+
   void _startCountdown() {
-    Future.doWhile(() async {
-      await Future.delayed(const Duration(seconds: 1));
-      if (mounted) {
-        setState(() {
-          if (_resendCountdown > 0) {
-            _resendCountdown--;
-          } else {
-            _resendEnabled = true;
-          }
-        });
+    _timer?.cancel();
+    _resendCountdown = 30;
+    _resendEnabled = false;
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      if (!mounted) {
+        timer.cancel();
+        return;
       }
-      return _resendCountdown > 0;
+      setState(() {
+        if (_resendCountdown > 0) {
+          _resendCountdown--;
+        } else {
+          _resendEnabled = true;
+          timer.cancel();
+        }
+      });
     });
+  }
+
+  String _emailFromContext(BuildContext context) {
+    final fromQuery =
+        GoRouterState.of(context).uri.queryParameters['email']?.trim();
+    if (fromQuery != null && fromQuery.isNotEmpty) return fromQuery;
+    return ref.read(currentUserProvider)?.email ?? '';
+  }
+
+  Future<void> _resend(String email) async {
+    if (_sending || email.isEmpty) return;
+    setState(() => _sending = true);
+    final sent =
+        await ref.read(authStateProvider.notifier).resendVerificationEmail(
+              email,
+            );
+    if (!mounted) return;
+    setState(() {
+      _sending = false;
+      if (sent) _startCountdown();
+    });
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          sent
+              ? 'Te enviamos un nuevo correo de verificación.'
+              : 'No pudimos reenviar el correo. Espera un momento e inténtalo otra vez.',
+        ),
+        backgroundColor:
+            sent ? GalindoColors.success : GalindoColors.error,
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    final user = ref.watch(currentUserProvider);
-    final email = user?.email ?? '';
+    final email = _emailFromContext(context);
+    final hasEmail = email.isNotEmpty;
 
     return Scaffold(
       backgroundColor: GalindoColors.charcoal,
@@ -88,33 +134,50 @@ class _VerifyEmailPageState extends ConsumerState<VerifyEmailPage> {
                   ),
                   SizedBox(height: GalindoSpacing.md),
                   Text(
-                    'Hemos enviado un enlace de verificación a $email',
+                    hasEmail
+                        ? 'Hemos enviado un enlace de verificación a $email'
+                        : 'Hemos enviado un enlace de verificación a tu correo',
                     style: GalindoTypography.bodyMedium.copyWith(
                       color: GalindoColors.textSecondary,
                     ),
                     textAlign: TextAlign.center,
                   ),
+                  SizedBox(height: GalindoSpacing.sm),
+                  Text(
+                    'Revisa también tu carpeta de spam. El enlace caduca en 24 horas.',
+                    style: GalindoTypography.bodySmall.copyWith(
+                      color: GalindoColors.textMuted,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
                   SizedBox(height: GalindoSpacing.xxl),
                   PrimaryButton(
-                    label: 'Reenviar correo',
-                    onPressed: _resendEnabled ? () {} : null,
+                    label: _sending ? 'Enviando…' : 'Reenviar correo',
+                    onPressed:
+                        _resendEnabled && hasEmail ? () => _resend(email) : null,
+                    isLoading: _sending,
                     size: ButtonSize.lg,
                   ),
                   if (!_resendEnabled)
-                    Text(
-                      'Reenviar en $_resendCountdowns',
-                      style: GalindoTypography.bodySmall.copyWith(
-                        color: GalindoColors.textMuted,
+                    Padding(
+                      padding: const EdgeInsets.only(top: GalindoSpacing.sm),
+                      child: Text(
+                        'Reenviar en $_resendCountdowns',
+                        style: GalindoTypography.bodySmall.copyWith(
+                          color: GalindoColors.textMuted,
+                        ),
+                        textAlign: TextAlign.center,
                       ),
-                      textAlign: TextAlign.center,
                     ),
                   SizedBox(height: GalindoSpacing.xxl),
                   TextButton(
-                    onPressed: () => context.push(AppRoutes.login),
+                    onPressed: () => context.go(AppRoutes.login),
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Icon(GalindoIcons.arrowRight, size: GalindoSpacing.iconSizeMd, color: GalindoColors.gold),
+                        Icon(GalindoIcons.arrowRight,
+                            size: GalindoSpacing.iconSizeMd,
+                            color: GalindoColors.gold),
                         SizedBox(width: GalindoSpacing.xs),
                         Text(
                           'Ya verifiqué mi correo',

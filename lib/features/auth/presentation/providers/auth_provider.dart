@@ -38,6 +38,12 @@ class AuthUiStateError extends AuthUiState {
   const AuthUiStateError(this.failure);
 }
 
+/// Registro completado; el usuario debe verificar su correo.
+class AuthUiStateRegistered extends AuthUiState {
+  final String email;
+  const AuthUiStateRegistered(this.email);
+}
+
 /// Notifier para el estado de autenticación
 class AuthNotifier extends StateNotifier<AuthUiState> {
   final SignInUseCase _signIn;
@@ -48,6 +54,7 @@ class AuthNotifier extends StateNotifier<AuthUiState> {
   final GetCurrentUserUseCase _getCurrentUser;
   final RefreshSessionUseCase _refreshSession;
   final SignInWithMagicLinkUseCase _signInWithMagicLink;
+  final ResendVerificationEmailUseCase _resendVerificationEmail;
 
   AuthNotifier(
     this._signIn,
@@ -58,6 +65,7 @@ class AuthNotifier extends StateNotifier<AuthUiState> {
     this._getCurrentUser,
     this._refreshSession,
     this._signInWithMagicLink,
+    this._resendVerificationEmail,
   ) : super(const AuthUiStateInitial()) {
     _checkInitialSession();
   }
@@ -123,11 +131,17 @@ class AuthNotifier extends StateNotifier<AuthUiState> {
 
     result.fold(
       (failure) => state = AuthUiStateError(failure),
-      (user) {
-        // El usuario se crea pero puede necesitar verificación de email
-        state = const AuthUiStateUnauthenticated();
+      (_) {
+        // El usuario se crea pero necesita verificar su email antes de entrar.
+        state = AuthUiStateRegistered(email);
       },
     );
+  }
+
+  /// Reenvía el correo de verificación. Devuelve true si se envió.
+  Future<bool> resendVerificationEmail(String email) async {
+    final result = await _resendVerificationEmail.execute(email: email);
+    return result.isSuccess;
   }
 
   Future<void> signOut() async {
@@ -216,6 +230,7 @@ final authStateProvider =
     ref.watch(getCurrentUserUseCaseProvider),
     ref.watch(refreshSessionUseCaseProvider),
     ref.watch(signInWithMagicLinkUseCaseProvider),
+    ref.watch(resendVerificationEmailUseCaseProvider),
   );
 });
 

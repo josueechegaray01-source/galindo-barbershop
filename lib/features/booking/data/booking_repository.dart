@@ -2,32 +2,50 @@
 ///
 /// Única fuente de verdad para franjas y reservas: las funciones RPC
 /// `get_available_slots` y `book_appointment` definidas en
-/// supabase/010_repair_real_backend.sql. Sin lógica duplicada en cliente.
+/// supabase/011_fix_backend_and_booking.sql. Sin lógica duplicada en cliente.
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:timezone/timezone.dart' as tz;
 
 /// Una franja horaria disponible devuelta por el backend.
+/// El RPC devuelve `timestamptz` (UTC); se convierten a zona horaria Lima.
 class BookingSlot {
-  final DateTime start;
-  final DateTime end;
+  final DateTime start; // En zona horaria local (America/Lima)
+  final DateTime end;   // En zona horaria local (America/Lima)
   const BookingSlot({required this.start, required this.end});
 
   factory BookingSlot.fromJson(Map<String, dynamic> json) {
+    // El backend devuelve UTC (ISO con Z o +00:00). Parseamos como UTC y
+    // convertimos a zona horaria Lima para mostrar correctamente.
+    final utcStart = DateTime.parse(json['slot_start'] as String).toUtc();
+    final utcEnd = DateTime.parse(json['slot_end'] as String).toUtc();
     return BookingSlot(
-      start: DateTime.parse(json['slot_start'] as String),
-      end: DateTime.parse(json['slot_end'] as String),
+      start: _toLima(utcStart),
+      end: _toLima(utcEnd),
     );
+  }
+
+  static DateTime _toLima(DateTime utc) {
+    try {
+      final lima = tz.getLocation('America/Lima');
+      return tz.TZDateTime.from(utc, lima);
+    } catch (_) {
+      // Fallback: offset fijo -5 horas (Lima sin DST)
+      return utc.subtract(const Duration(hours: 5));
+    }
   }
 }
 
 /// Cita creada (respuesta de book_appointment).
+/// El backend almacena timestamps "naive" (sin zona) en zona horaria Lima.
+/// Se parsean como Local (Lima) y se convierten a zona horaria Lima.
 class BookedAppointment {
   final String id;
   final String status;
   final double price;
-  final DateTime start;
-  final DateTime end;
+  final DateTime start; // En zona horaria local (America/Lima)
+  final DateTime end;   // En zona horaria local (America/Lima)
 
   const BookedAppointment({
     required this.id,
@@ -38,13 +56,28 @@ class BookedAppointment {
   });
 
   factory BookedAppointment.fromJson(Map<String, dynamic> json) {
+    // El backend devuelve timestamps "naive" (sin Z ni offset), p.ej.
+    // "2026-11-27T14:00:00". Se interpretan como hora local de Lima.
     return BookedAppointment(
       id: json['id'] as String,
       status: json['status'] as String? ?? 'pending',
       price: (json['price'] as num?)?.toDouble() ?? 0,
-      start: DateTime.parse(json['scheduled_start'] as String),
-      end: DateTime.parse(json['scheduled_end'] as String),
+      start: _parseLimaNaive(json['scheduled_start'] as String),
+      end: _parseLimaNaive(json['scheduled_end'] as String),
     );
+  }
+
+  static DateTime _parseLimaNaive(String naive) {
+    // "2026-11-27T14:00:00" o "2026-11-27 14:00:00"
+    final dt = DateTime.parse(naive.replaceAll(' ', 'T'));
+    try {
+      final lima = tz.getLocation('America/Lima');
+      // Lo tratamos como si ya estuviera en zona Lima (naive = wall time Lima)
+      return tz.TZDateTime(lima, dt.year, dt.month, dt.day, dt.hour, dt.minute,
+          dt.second, dt.millisecond, dt.microsecond);
+    } catch (_) {
+      return dt; // Ya es "local" para el formateador
+    }
   }
 }
 

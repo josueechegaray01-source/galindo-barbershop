@@ -1,6 +1,4 @@
-/// Abre URLs externas. Import condicional: en web usa dart:html,
-/// en otras plataformas queda como operación sin efecto.
+/// Abre URLs externas usando url_launcher (Android, iOS, Web, Windows, macOS, Linux).
 library;
 
-export 'open_external_stub.dart'
-    if (dart.library.html) 'open_external_web.dart';
+export 'open_external_impl.dart';

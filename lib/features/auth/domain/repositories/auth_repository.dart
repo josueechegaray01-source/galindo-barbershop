@@ -35,6 +35,11 @@ abstract class AuthRepository {
     required String email,
   });
 
+  /// Reenviar el correo de verificación de cuenta
+  Future<Result<void>> resendVerificationEmail({
+    required String email,
+  });
+
   /// Actualizar contraseña
   Future<Result<UserEntity>> updatePassword(String newPassword);
 

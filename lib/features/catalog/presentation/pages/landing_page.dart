@@ -18,6 +18,7 @@ import '../widgets/landing_header.dart';
 import '../widgets/landing_hero.dart';
 import '../widgets/landing_services.dart';
 import '../widgets/landing_theme.dart';
+import '../widgets/app_download_strip.dart';
 
 class LandingPage extends StatefulWidget {
   const LandingPage({super.key});
@@ -117,6 +118,7 @@ class _LandingPageState extends State<LandingPage> {
                   _section(3, LandingGallery(onReservar: _goBooking)),
                   _section(4, const LandingAbout()),
                   _section(5, LandingContact(onReservar: _goBooking)),
+                  const AppDownloadStrip(),
                   LandingFooter(onNavigate: _navigateTo),
                 ],
               ),

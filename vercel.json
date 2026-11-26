@@ -4,6 +4,14 @@
   "outputDirectory": "build/web",
   "routes": [
     {
+      "src": "/downloads/.*\\.apk",
+      "headers": {
+        "Content-Type": "application/vnd.android.package-archive",
+        "Content-Disposition": "attachment; filename=\"galindo-barbershop.apk\""
+      },
+      "dest": "/downloads/$1"
+    },
+    {
       "src": "/(.*\\.(js|css|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot|json|map|wasm))",
       "dest": "/$1"
     },

@@ -3,9 +3,6 @@
 /// Fuente única: Supabase (esquema real del proyecto). Si el backend no
 /// responde, el provider falla y la interfaz muestra un estado honesto con
 /// reintento; nunca se sustituye por datos simulados.
-///
-/// NOTA: Actualmente el proyecto Supabase demo devuelve 401 en consultas públicas.
-/// Se implementa fallback a datos mock para que la app funcione en modo demo.
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -188,160 +185,26 @@ class PublicDataException implements Exception {
   const PublicDataException(this.message);
 }
 
-// ──────────────────── MOCK DATA ───────────────────────────
-
-List<Map<String, dynamic>> _getMockServices() {
-  return [
-    {
-      'id': '11111111-1111-1111-1111-111111111111',
-      'name': 'Corte Clásico Galindo',
-      'slug': 'corte-clasico-galindo',
-      'description': 'Corte tradicional con tijera y máquina, incluye lavado y acabado con productos premium.',
-      'price': 25.00,
-      'duration_min': 30,
-      'category': 'Cortes',
-      'image_url': null,
-      'sort_order': 1,
-    },
-    {
-      'id': '22222222-2222-2222-2222-222222222222',
-      'name': 'Diseño de Barba con Toalla Caliente',
-      'slug': 'diseno-barba-toalla-caliente',
-      'description': 'Perfilado de barba con navaja, toalla caliente y aceites esenciales hidratantes.',
-      'price': 20.00,
-      'duration_min': 25,
-      'category': 'Barba',
-      'image_url': null,
-      'sort_order': 2,
-    },
-    {
-      'id': '33333333-3333-3333-3333-333333333333',
-      'name': 'Combo Galindo (Corte + Barba)',
-      'slug': 'combo-galindo-corte-barba',
-      'description': 'Experiencia completa: Corte clásico y diseño de barba con toalla caliente.',
-      'price': 40.00,
-      'duration_min': 55,
-      'category': 'Combos',
-      'image_url': null,
-      'sort_order': 3,
-    },
-    {
-      'id': '44444444-4444-4444-4444-444444444444',
-      'name': 'Corte Infantil (Niños)',
-      'slug': 'corte-infantil-ninos',
-      'description': 'Corte especial para engreídos de la casa (hasta 12 años).',
-      'price': 20.00,
-      'duration_min': 30,
-      'category': 'Cortes',
-      'image_url': null,
-      'sort_order': 4,
-    },
-    {
-      'id': '55555555-5555-5555-5555-555555555555',
-      'name': 'Afeitado Tradicional',
-      'slug': 'afeitado-tradicional',
-      'description': 'Afeitado clásico al ras con navaja, espuma caliente y loción aftershave.',
-      'price': 18.00,
-      'duration_min': 20,
-      'category': 'Barba',
-      'image_url': null,
-      'sort_order': 5,
-    },
-  ];
-}
-
-List<Map<String, dynamic>> _getMockBarbers() {
-  return [
-    {
-      'id': 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa',
-      'display_name': 'Claudio Galindo',
-      'slug': 'claudio-galindo',
-      'bio': 'Fundador y maestro barbero con más de 25 años de experiencia en Ica.',
-      'avatar_url': null,
-      'specialization': ['Corte Clásico', 'Barba', 'Navaja'],
-      'years_experience': 25,
-    },
-    {
-      'id': 'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb',
-      'display_name': 'Carlos Mendoza',
-      'slug': 'carlos-mendoza',
-      'bio': 'Especialista en fades modernos, diseños y texturas.',
-      'avatar_url': null,
-      'specialization': ['Fade', 'Corte Moderno', 'Diseños'],
-      'years_experience': 6,
-    },
-    {
-      'id': 'cccccccc-cccc-cccc-cccc-cccccccccccc',
-      'display_name': 'Miguel Torres',
-      'slug': 'miguel-torres',
-      'bio': 'Experto en arreglos de barba, perfilado y tratamientos capilares.',
-      'avatar_url': null,
-      'specialization': ['Barba', 'Toalla Caliente', 'Afeitado'],
-      'years_experience': 8,
-    },
-  ];
-}
-
-List<Map<String, dynamic>> _getMockBarberServices() {
-  return [
-    {'barber_id': 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa', 'service_id': '11111111-1111-1111-1111-111111111111'},
-    {'barber_id': 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa', 'service_id': '22222222-2222-2222-2222-222222222222'},
-    {'barber_id': 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa', 'service_id': '33333333-3333-3333-3333-333333333333'},
-    {'barber_id': 'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb', 'service_id': '11111111-1111-1111-1111-111111111111'},
-    {'barber_id': 'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb', 'service_id': '33333333-3333-3333-3333-333333333333'},
-    {'barber_id': 'cccccccc-cccc-cccc-cccc-cccccccccccc', 'service_id': '22222222-2222-2222-2222-222222222222'},
-    {'barber_id': 'cccccccc-cccc-cccc-cccc-cccccccccccc', 'service_id': '33333333-3333-3333-3333-333333333333'},
-  ];
-}
-
-List<Map<String, dynamic>> _getMockBusinessHours() {
-  return [
-    {
-      'monday_open': '09:00',
-      'monday_close': '20:00',
-      'tuesday_open': '09:00',
-      'tuesday_close': '20:00',
-      'wednesday_open': '09:00',
-      'wednesday_close': '20:00',
-      'thursday_open': '09:00',
-      'thursday_close': '20:00',
-      'friday_open': '09:00',
-      'friday_close': '20:00',
-      'saturday_open': '09:00',
-      'saturday_close': '20:00',
-      'sunday_open': null,
-      'sunday_close': null,
-    },
-  ];
-}
-
 // ──────────────────── HELPERS ───────────────────────────
 
 const kCatalogUnavailable =
     'No pudimos cargar esta información. Revisa tu conexión e inténtalo de nuevo.';
 
-/// Intenta obtener datos de Supabase, si falla (401, timeout, etc.) usa datos mock.
-Future<List<Map<String, dynamic>>> _trySupabaseOrMock(
-    Future<List<Map<String, dynamic>>> Function(SupabaseClient) run,
-    List<Map<String, dynamic>> Function() getMock,
-) async {
-  try {
-    if (!Environment.isSupabaseConfigured) {
-      return getMock();
-    }
-    final client = Supabase.instance.client;
-    return await run(client).timeout(const Duration(seconds: 5));
-  } catch (_) {
-    // Si falla (401, timeout, network error), usar datos mock
-    return getMock();
+/// Obtiene datos de Supabase. Si falla (401, timeout, etc.) lanza excepción.
+Future<List<Map<String, dynamic>>> _trySupabase(
+    Future<List<Map<String, dynamic>>> Function(SupabaseClient) run) async {
+  if (!Environment.isSupabaseConfigured) {
+    throw PublicDataException(kCatalogUnavailable);
   }
+  final client = Supabase.instance.client;
+  return await run(client).timeout(const Duration(seconds: 5));
 }
 
 // ──────────────────── PROVIDERS ───────────────────────────
 
 final publicServicesProvider =
     FutureProvider<List<PublicService>>((ref) async {
-  final rows = await _trySupabaseOrMock(
+  final rows = await _trySupabase(
     (client) => client
         .from('services')
         .select(
@@ -349,21 +212,19 @@ final publicServicesProvider =
         .eq('is_active', true)
         .eq('is_public', true)
         .order('sort_order', ascending: true),
-    _getMockServices,
   );
   return rows.map((r) => PublicService.fromJson(r)).toList();
 });
 
 final publicBarbersProvider =
     FutureProvider<List<PublicBarber>>((ref) async {
-  final rows = await _trySupabaseOrMock(
+  final rows = await _trySupabase(
     (client) => client
         .from('barbers')
         .select(
             'id, display_name, slug, bio, avatar_url, specialization, years_experience')
         .eq('is_active', true)
         .order('sort_order', ascending: true),
-    _getMockBarbers,
   );
   return rows.map((r) => PublicBarber.fromJson(r)).toList();
 });
@@ -373,11 +234,10 @@ final publicBarbersProvider =
 /// backend.
 final barberServicesProvider =
     FutureProvider<List<PublicBarberService>>((ref) async {
-  final rows = await _trySupabaseOrMock(
+  final rows = await _trySupabase(
     (client) => client
         .from('barber_services')
         .select('barber_id, service_id, price, duration_minutes'),
-    _getMockBarberServices,
   );
   return rows.map((r) => PublicBarberService.fromJson(r)).toList();
 });
@@ -385,9 +245,8 @@ final barberServicesProvider =
 /// Horario general real del negocio. Null si no está disponible.
 final businessHoursProvider =
     FutureProvider<PublicBusinessHours?>((ref) async {
-  final rows = await _trySupabaseOrMock(
+  final rows = await _trySupabase(
     (client) => client.from('business_hours').select('*').limit(1),
-    _getMockBusinessHours,
   );
   if (rows.isEmpty) return null;
   return PublicBusinessHours.fromJson(rows.first);

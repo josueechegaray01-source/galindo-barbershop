@@ -39,7 +39,7 @@ final routerProvider = Provider<GoRouter>((ref) {
       title: 'Página no encontrada',
       message: 'La ruta solicitada no existe.',
       actionLabel: 'Ir al inicio',
-      actionRoute: AppRoutes.home,
+      actionRoute: AppRoutes.landing,
     ),
   );
 });
@@ -232,10 +232,8 @@ List<RouteBase> _buildRoutes() {
       routes: [
         GoRoute(
           path: AppRoutes.home,
-          name: 'home',
-          // builder: (context, state) => const CatalogPage(), // Home = catálogo
-          builder: (context, state) =>
-              const ProfilePage(), // Temporal: ir a perfil
+          name: 'client-home',
+          builder: (context, state) => const ProfilePage(),
         ),
         // GoRoute(
         //   path: AppRoutes.availability,
@@ -320,7 +318,7 @@ class AppRoutes {
   static const String barberDetail = '/barbero';
 
   // Cliente
-  static const String home = '/inicio';
+  static const String home = '/mi-cuenta';
   static const String availability = '/disponibilidad';
   static const String bookingFlow = '/reservar';
   static const String myBookings = '/mis-citas';

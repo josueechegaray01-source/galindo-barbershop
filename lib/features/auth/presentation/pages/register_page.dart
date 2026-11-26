@@ -42,6 +42,11 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
           ),
         );
       }
+      if (next is AuthUiStateRegistered) {
+        context.go(
+          '${AppRoutes.verifyEmail}?email=${Uri.encodeComponent(next.email)}',
+        );
+      }
     });
 
     return Scaffold(
@@ -186,6 +191,11 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
             ),
             validator: (value) {
               if (value == null || value.isEmpty) return 'Confirma tu contraseña';
+              final password =
+                  _formKey.currentState?.fields['password']?.value as String?;
+              if (password != null && value != password) {
+                return 'Las contraseñas no coinciden';
+              }
               return null;
             },
           ),

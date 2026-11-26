@@ -328,12 +328,12 @@ class NumberField extends StatelessWidget {
       suffixIcon: suf != null
           ? Padding(
               padding: EdgeInsets.all(GalindoSpacing.md),
-              child: Text(suf!, style: GalindoTypography.bodyMedium),
+              child: Text(suf, style: GalindoTypography.bodyMedium),
             )
           : null,
       validators: validators,
       onChanged:
-          chg != null ? (v) => chg!(num.tryParse(v) ?? 0) : null,
+          chg != null ? (v) => chg(num.tryParse(v) ?? 0) : null,
     );
   }
 }

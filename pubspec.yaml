@@ -40,6 +40,7 @@ dependencies:
   flutter_secure_storage: ^9.2.2
   uuid: ^4.4.0
   collection: ^1.18.0
+  url_launcher: ^6.2.6
 
   # ============================================
   # FORMULARIOS Y VALIDACIÓN
@@ -121,10 +122,6 @@ flutter:
     - family: PhosphorRegular
       fonts:
         - asset: assets/fonts/Phosphor-Regular.ttf
-    - family: MaterialIcons
-      fonts:
-        - asset: assets/fonts/MaterialIcons-Regular.otf
-          weight: 400
 
   # Configuración para generar iconos (flutter_launcher_icons)
   # flutter_launcher_icons:

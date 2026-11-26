@@ -119,6 +119,23 @@ class ResetPasswordUseCase {
   }
 }
 
+/// Caso de uso: Reenviar verificación de correo
+class ResendVerificationEmailUseCase {
+  final AuthRepository _repository;
+
+  ResendVerificationEmailUseCase(this._repository);
+
+  Future<Result<void>> execute({required String email}) async {
+    if (email.trim().isEmpty) {
+      return Result.failure(
+          ValidationFailure.single('email', 'El correo es obligatorio'));
+    }
+    return _repository.resendVerificationEmail(
+      email: email.trim().toLowerCase(),
+    );
+  }
+}
+
 /// Caso de uso: Actualizar contraseña
 class UpdatePasswordUseCase {
   final AuthRepository _repository;
@@ -188,6 +205,11 @@ final signOutUseCaseProvider = Provider<SignOutUseCase>((ref) {
 
 final resetPasswordUseCaseProvider = Provider<ResetPasswordUseCase>((ref) {
   return ResetPasswordUseCase(ref.watch(authRepositoryProvider));
+});
+
+final resendVerificationEmailUseCaseProvider =
+    Provider<ResendVerificationEmailUseCase>((ref) {
+  return ResendVerificationEmailUseCase(ref.watch(authRepositoryProvider));
 });
 
 final updatePasswordUseCaseProvider = Provider<UpdatePasswordUseCase>((ref) {

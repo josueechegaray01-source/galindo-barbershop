@@ -99,6 +99,24 @@ class AuthRemoteDataSource {
     }
   }
 
+  /// Reenviar correo de verificación de registro
+  Future<Result<void>> resendVerificationEmail({
+    required String email,
+  }) async {
+    try {
+      await _auth.resend(
+        email: email,
+        type: OtpType.signup,
+        emailRedirectTo: 'io.supabase.galindobarbershop://login-callback',
+      );
+      return Result.success(null);
+    } on AuthException catch (e) {
+      return Result.failure(AuthFailure.fromAuthException(e));
+    } catch (e, stack) {
+      return Result.failure(exceptionToFailure(e as Exception, stack));
+    }
+  }
+
   /// Actualizar contraseña (usuario logueado)
   Future<Result<User>> updatePassword(String newPassword) async {
     try {
